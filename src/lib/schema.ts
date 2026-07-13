@@ -4,6 +4,7 @@ export const FontSchema = z.object({
   id: z.string(),
   name: z.string(),
   creatorId: z.string(),
+  description: z.string(),
   category: z.enum(["sans", "serif", "display", "script", "monospace"]),
   weights: z.array(z.number()),
   hasItalic: z.boolean(),

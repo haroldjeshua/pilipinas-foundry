@@ -1,7 +1,7 @@
 # Philosophy
 
-Part of the Pilipinas Interface ecosystem. This document is the ethos behind the
-Filipino Free Font Library — why it's built the way it's built, and the visual
+Part of the Pilipinas Interface ecosystem. This document is the ethos behind
+pilipinas-foundry — why it's built the way it's built, and the visual
 and editorial line it should never cross.
 
 ## 1. Manifesto
@@ -56,9 +56,9 @@ doesn't warrant a runtime dependency. motion.dev (formerly framer-motion) is not
 off the table if a specific need justifies it, but the default is CSS.
 
 **One quiet signature, not a spectacle.** Even a calm design can have a single
-considered, memorable detail — how the dual heading/body panes are framed, how a
-creator's name sits next to their font, a restrained transition between
-specimens. Spend the one allowed flourish there, and nowhere else.
+considered, memorable detail — how a font's name and creator sit in the homepage
+grid, how the specimen page frames the preview area, the transition from grid
+to specimen. Spend the one allowed flourish there, and nowhere else.
 
 ## 3. Visual Direction
 
@@ -69,10 +69,19 @@ The palette's job is to never distract from whatever typeface is currently
 loaded into the preview panes, which will themselves introduce color through
 user-selected text color.
 
-**Layout.** Editorial, generous whitespace, a clear grid. Think type-foundry
-specimen sheet or a well-set print catalog, not a SaaS landing page. Hairline
-rules over heavy borders. Zero unnecessary card shadows or gradients — those
-read as decoration competing with the type itself.
+**Layout.** Editorial, generous whitespace, a clear grid. Two distinct layouts
+serve two distinct jobs:
+- *Homepage grid*: fonts presented at large sizes with clear name/creator credit,
+  each linking to its specimen. Dense enough to browse, calm enough to scan —
+  think Open Foundry's homepage. Consistent spacing, no visual noise between
+  specimens.
+- *Specimen page*: full-width, unhurried, the font doing all the work. Weight
+  listing, license info, creator credit, interactive preview controls. Think
+  type-foundry specimen sheet or a well-set print catalog, not a SaaS landing
+  page.
+
+Hairline rules over heavy borders. Zero unnecessary card shadows or gradients —
+those read as decoration competing with the type itself.
 
 **The UI typeface(s).** Geist Sans for all interface chrome — navigation,
 buttons, captions, creator credits. Geist Mono for numeric values (weight
@@ -81,9 +90,10 @@ neutral enough to disappear behind the specimen fonts being previewed. Never a
 second "personality" display face for the UI itself; the personality on this
 site comes exclusively from the fonts being previewed.
 
-**Density and pacing.** Uncrowded. One font pairing in focus at a time in the
-preview view; browse/grid views can be denser but still calm — consistent
-spacing units, no visual noise between specimens.
+**Density and pacing.** Uncrowded. The homepage grid is denser than the specimen
+page but still calm — consistent spacing units, no visual noise between specimens.
+The specimen page is one font in focus at a time, with generous whitespace
+around the preview area and specimen details. Both layouts should feel unhurried.
 
 **Preview text.** Tagalog pangram as the default preview text in both panes.
 An English pangram is available via a settings dialog toggle — the Tagalog
@@ -92,10 +102,18 @@ English isn't welcome.
 
 ## 4. Inspiration
 
+- **[Open Foundry](https://open-foundry.com/)** — primary visual and structural
+  reference. The homepage grid (fonts at large sizes, name + creator, "Explore"
+  links), the specimen page layout (weight listing, license/creator metadata,
+  editorial pacing), the restrained palette, the confidence to let typography
+  fill the frame. What to take: the layout structure, the editorial tone, the
+  whitespace, the way fonts are presented as the hero content.
 - **[Google Fonts Preview by Tomoya Okada](https://fonts.tomoyaokada.com/)** —
-  primary interaction reference: dual heading/body pickers, live style controls,
-  plain background, typography doing all the work. What to take: the restraint,
-  the directness, the confidence to leave the UI nearly invisible.
+  primary interaction reference for the font specimen page: dual heading/body
+  pickers, live style controls, plain background, typography doing all the work.
+  What to take: the restraint, the directness, the confidence to leave the UI
+  nearly invisible. This interaction lives on `/fonts/{font-name}`, not the
+  homepage.
 - Type-foundry specimen pages generally (the way independent foundries present
   their own release specimens) — calm, print-inspired, unhurried.
 - What **not** to take: anything that reads as "trying." No AI-generated-design

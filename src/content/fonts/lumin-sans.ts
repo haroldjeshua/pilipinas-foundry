@@ -4,6 +4,7 @@ const font: Font = {
   id: "lumin-sans",
   name: "Lumin Sans",
   creatorId: "maria-santos",
+  description: "A geometric sans-serif with a warm, approachable character. Designed for clarity at both display and text sizes.",
   category: "sans",
   weights: [400, 700],
   hasItalic: false,

@@ -8,7 +8,7 @@ export default function Header() {
           to="/"
           className="font-sans text-lg font-semibold tracking-tight text-foreground hover:text-primary transition-colors duration-fast"
         >
-          tipong-pinoy
+          pilipinas-foundry
         </Link>
         <nav aria-label="Main">
           <ul className="flex items-center gap-6 text-sm text-muted-foreground">

@@ -1,19 +1,45 @@
-# Filipino Free Font Library (working name: tipong-pinoy)
+# pilipinas-foundry
 
 Part of the Pilipinas Interface ecosystem.
 
 ## 1. Vision
 
-A design-engineering initiative — not a font distribution service — that lets people
-**preview** free/open-license fonts made by Filipino type designers and creatives,
-side by side, with full typographic control (size, color, tracking, leading, custom
-text). No downloads, no zip files, no "get font" button. The product is the
-*experience of previewing type*, and the *spotlight on who made it*.
+A specimen library of free, open-license typefaces by Filipino type designers.
+Not a font distribution service — a design-engineering initiative that lets people
+**preview** type side by side, with full typographic control (size, color, tracking,
+leading, custom text). No downloads, no zip files, no "get font" button. The product
+is the *experience of previewing type*, and the *spotlight on who made it*.
 
-Inspired by [Google Fonts Preview by Tomoya Okada](https://fonts.tomoyaokada.com/) —
-same interaction model (dual heading/body font pickers, live style controls), but
-sourced from a hand-curated Filipino type design community instead of the Google
-Fonts API, and with creator attribution as a first-class feature, not a footnote.
+Inspired by two complementary references:
+- **[Open Foundry](https://open-foundry.com/)** — for the homepage/collection grid
+  design and the font specimen page layout: editorial, generous whitespace, fonts
+  presented at large sizes with clear creator attribution, calm and unhurried pacing.
+  The visual direction and site structure take their lead from here.
+- **[Google Fonts Preview by Tomoya Okada](https://fonts.tomoyaokada.com/)** — for
+  the interactive preview feature on individual font specimen pages: dual heading/body
+  font pickers, live style controls (size, color, tracking, leading), editable preview
+  text. This interaction model lives on the `/fonts/{font-name}` route, not the
+  homepage.
+
+Both share the same philosophy: no distribution, typography doing all the work, UI
+that disappears behind the content. Filipino type design community sourcing and
+creator attribution as a first-class feature are the differentiators.
+
+## 1a. Adjacent Projects
+
+- **Type63** — an active Filipino type design community initiative
+  (Instagram/social-first, started 2023). Curates and celebrates Filipino type
+  work; has real community traction and a real dataset. Not open-source, so its
+  data is not to be used or scraped. This project is **complementary, not
+  competitive**: the differentiator is genuinely interactive, inspectable font
+  specimens (real `@font-face` rendering with live controls) versus Type63's
+  rasterized, static image posts. If this project gains traction, reaching out
+  to Type63 for potential collaboration is a future possibility — not an
+  assumption to build on now.
+- **Open Foundry** (open-foundry.com) — the naming/style inspiration
+  acknowledged during planning; noted here so it's clear the resemblance in
+  concept (curated, display-not-distribution, creator-forward) is intentional in
+  spirit but the execution, content, and now the name are deliberately distinct.
 
 ## 2. Core Principles
 
@@ -50,6 +76,7 @@ type Font = {
   id: string;              // slug, e.g. "salubong-sans"
   name: string;
   creatorId: string;       // FK to creators.json
+  description: string;     // short, factual — what the font is, not a narrative
   category: "sans" | "serif" | "display" | "script" | "monospace";
   weights: number[];       // available weights, e.g. [400, 700]
   hasItalic: boolean;
@@ -126,14 +153,26 @@ this now so it's a known lever, not a scramble later.
 
 ## 7. V1 Feature Set
 
-- **Dual preview panes** — heading font + body font, selected independently
-  (mirrors the Tomoya Okada interaction model).
-- **Per-pane controls** — font, weight, size, color, letter-spacing, line-height.
-- **Editable preview text** — user can type their own sample text; Tagalog
-  pangram as default, English pangram available via a settings dialog toggle.
-- **Font detail view** — full specimen (weights, styles), license info, creator
-  credit (name + link inline, not a separate page).
-- **Browse/filter** — by category (sans/serif/display/script), maybe by creator.
+**Homepage (`/`)** — the collection grid, the first thing visitors see:
+- Grid of all Filipino fonts, each displayed at a large preview size with font
+  name and creator credit (inspired by Open Foundry's homepage layout).
+- Browse/filter — by category (sans/serif/display/script/monospace), maybe by
+  creator. Filter controls live on this page, not a separate route.
+- Each font in the grid links to its specimen page (`/fonts/{font-name}`).
+
+**Font specimen page (`/fonts/:id`)** — the interactive preview, the core
+interaction (inspired by Tomoya Okada's preview tool, laid out like Open Foundry's
+specimen pages):
+- Dual preview panes — heading font + body font, selected independently from the
+  full library, with live style controls.
+- Per-pane controls — font, weight, size, color, letter-spacing, line-height.
+- Editable preview text — user can type their own sample text; Tagalog pangram as
+  default, English pangram available via a settings dialog toggle.
+- Full specimen across declared weights/styles, license + license link, source
+  link, and creator credit (name + link inline — not a separate profile page in v1).
+- Description/bio for the font and creator, factual and plain per the content voice.
+
+**About page (`/about`)** — project description, how it works, credits.
 
 ## 8. Non-Goals (v1)
 
@@ -154,18 +193,24 @@ this now so it's a known lever, not a scramble later.
   embedding.
 - **Link rot** if any metadata references external creator sites/socials over time
   — low-severity since core assets are self-hosted.
-- **Naming.** "tipong-pinoy" is the working name from earlier ecosystem planning —
-  confirm before this becomes load-bearing in the repo, domain, and branding.
+- **Naming.** `pilipinas-foundry` is the project name (repo, package, primary
+  display). `tipong-pinoy` is reserved as a local/vernacular label — it may appear
+  on the about page or as a tagline but is not the project title. Rejected
+  `filipino-foundry` to avoid confusion with Open Foundry (open-foundry.com) and
+  Filipino Folk Foundry (an existing entity in Filipino design circles).
 
 ## 10. Phased Roadmap
 
 The full execution plan lives in `.agents/docs/PHASES.md`. Summary:
 
-- **V1 (Phases 0–6):** Static site with ~10–20 launch fonts, dual preview
-  panes with live controls, font detail pages, browse/filter, Tagalog pangram
-  default, Geist Sans/Mono UI, deployed to Cloudflare Pages. Manual PR-based
-  ingestion. Creator attribution inline on font detail pages (no separate
-  creator profile pages in v1).
+- **V1 (Phases 0–6):** Static site with ~10–20 launch fonts. Homepage is a
+  collection grid of Filipino fonts (Open Foundry style) with browse/filter.
+  Font specimen pages at `/fonts/{font-name}` with interactive dual-pane preview
+  (Tomoya Okada style) plus specimen details (weights, license, creator credit).
+  About page. Tagalog pangram default, Geist Sans/Mono UI, deployed to Cloudflare
+  Pages. Manual PR-based ingestion. Creator attribution inline on specimen pages
+  (no separate creator profile pages in v1). `tipong-pinoy` may appear as a
+  local label on the about page.
 - **V2 (future):** Creator profile pages, full-text search, better specimen
   views (full charset, pairing suggestions).
 - **V3 (future, undecided):** Lightweight submission intake for creators —

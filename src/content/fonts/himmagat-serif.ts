@@ -4,6 +4,7 @@ const font: Font = {
   id: "himmagat-serif",
   name: "Himmagat Serif",
   creatorId: "jun-reyes",
+  description: "A transitional serif typeface with moderate contrast and sturdy letterforms, built for extended reading in print and on screen.",
   category: "serif",
   weights: [400, 700],
   hasItalic: false,

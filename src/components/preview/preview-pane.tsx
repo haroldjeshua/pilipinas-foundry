@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent } from "react";
+import { useState } from "react";
 import { useFontFace } from "@/hooks/use-font-face";
 import { getFonts } from "@/lib/content";
 import { Button } from "@/components/ui/button";
@@ -115,11 +115,8 @@ export default function PreviewPane({
           min={12}
           max={120}
           step={1}
-          value={state.size}
-          label="Font size"
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            update("size", Number(e.target.value))
-          }
+          value={[state.size]}
+          onValueChange={(v) => update("size", Array.isArray(v) ? v[0]! : v)}
         />
       </div>
 
@@ -153,11 +150,8 @@ export default function PreviewPane({
           min={-0.05}
           max={0.2}
           step={0.01}
-          value={state.letterSpacing}
-          label="Letter spacing"
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            update("letterSpacing", Number(e.target.value))
-          }
+          value={[state.letterSpacing]}
+          onValueChange={(v) => update("letterSpacing", Array.isArray(v) ? v[0]! : v)}
         />
       </div>
 
@@ -173,11 +167,8 @@ export default function PreviewPane({
           min={0.8}
           max={3}
           step={0.1}
-          value={state.lineHeight}
-          label="Line height"
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            update("lineHeight", Number(e.target.value))
-          }
+          value={[state.lineHeight]}
+          onValueChange={(v) => update("lineHeight", Array.isArray(v) ? v[0]! : v)}
         />
       </div>
 

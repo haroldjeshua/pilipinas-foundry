@@ -1,5 +1,7 @@
 import { type SelectHTMLAttributes, forwardRef } from "react";
 import { cn } from "@/lib/utils";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowDown01Icon } from "@hugeicons/core-free-icons";
 
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   options: { value: string; label: string }[];
@@ -34,19 +36,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
           ))}
         </select>
         <div className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground">
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 12 12"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M3 4.5L6 7.5L9 4.5" />
-          </svg>
+          <HugeiconsIcon icon={ArrowDown01Icon} size={12} />
         </div>
       </div>
     );

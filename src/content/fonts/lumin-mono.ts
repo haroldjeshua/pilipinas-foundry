@@ -4,6 +4,7 @@ const font: Font = {
   id: "lumin-mono",
   name: "Lumin Mono",
   creatorId: "maria-santos",
+  description: "A monospaced companion to Lumin Sans, designed for code blocks and technical contexts where aligned columns matter.",
   category: "monospace",
   weights: [400],
   hasItalic: false,

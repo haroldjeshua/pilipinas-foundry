@@ -4,6 +4,7 @@ const font: Font = {
   id: "dagoh-sans",
   name: "Dagoh Sans",
   creatorId: "jun-reyes",
+  description: "A versatile sans-serif typeface with clean proportions and regular weights, suitable for body text and UI interfaces.",
   category: "sans",
   weights: [400, 700],
   hasItalic: true,

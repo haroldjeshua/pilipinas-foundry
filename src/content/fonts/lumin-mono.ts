@@ -5,14 +5,13 @@ const font: Font = {
   name: "Lumin Mono",
   creatorId: "maria-santos",
   category: "monospace",
-  weights: [400, 700],
+  weights: [400],
   hasItalic: false,
   license: "OFL",
   licenseUrl: "https://openfontlicense.org",
   sourceUrl: "https://github.com/maria-santos/lumin-mono",
   fileMap: {
-    "400": "j1k2l3.woff2",
-    "700": "m4n5o6.woff2",
+    "400": "6dc9da17.woff2",
   },
   dateAdded: "2025-01-15",
 };

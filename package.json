@@ -12,10 +12,15 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "tsc -b --noEmit",
-    "check:integrity": "tsx scripts/check-integrity.ts"
+    "check:integrity": "tsx scripts/check-integrity.ts",
+    "subset": "tsx scripts/subset-font.ts",
+    "hash-font": "tsx scripts/hash-font.ts",
+    "generate:font-face": "tsx scripts/generate-font-face.ts"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild"]
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   },
   "dependencies": {
     "react": "^19.2.7",
@@ -25,6 +30,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@fontsource/fira-code": "^5.2.7",
+    "@fontsource/inter": "^5.2.8",
     "@tailwindcss/vite": "^4.3.2",
     "@types/node": "^24.13.2",
     "@types/react": "^19.2.17",

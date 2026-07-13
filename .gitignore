@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Raw font sources (never commit — per PROJECT.md §5 step 6)
+_source/
+
+# Subsetted font assets are committed, but .woff2 files outside public/ are not
+*.woff2
+!public/fonts/*.woff2
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*

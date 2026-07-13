@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens — empty but structured, ready for Phase 3.
+ * PHILOSOPHY.md §3 decisions go here:
+ *   - Palette: neutral background/text, one restrained accent
+ *   - Spacing scale
+ *   - UI typeface: Geist Sans (chrome), Geist Mono (numeric values)
+ */
+
+@theme {
+  /* Palette */
+  --color-background: #ffffff;
+  --color-foreground: #0a0a0a;
+  --color-muted: #737373;
+  --color-accent: #0a0a0a;
+  --color-border: #e5e5e5;
+
+  /* Spacing scale */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-24: 6rem;
+
+  /* Type scale */
+  --font-sans: "Geist Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+}

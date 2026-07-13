@@ -1,6 +1,6 @@
-import luminSans from "./lumin-sans";
-import luminMono from "./lumin-mono";
-import dagohSans from "./dagoh-sans";
-import himmagatSerif from "./himmagat-serif";
+import luminSans from "./lumin-sans.js";
+import luminMono from "./lumin-mono.js";
+import dagohSans from "./dagoh-sans.js";
+import himmagatSerif from "./himmagat-serif.js";
 
 export const fonts = [luminSans, luminMono, dagohSans, himmagatSerif];

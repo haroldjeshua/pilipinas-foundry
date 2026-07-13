@@ -5,7 +5,7 @@
  * Run: npx tsx scripts/check-integrity.ts
  */
 
-import { getFonts, getCreators } from "../src/lib/content";
+import { getFonts, getCreators } from "../src/lib/content.js";
 
 const fonts = getFonts();
 const creators = getCreators();

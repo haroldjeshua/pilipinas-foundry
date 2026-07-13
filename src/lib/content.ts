@@ -1,13 +1,13 @@
-import { FontSchema, CreatorSchema, type Font, type Creator } from "./schema";
-import { fonts as rawFonts } from "../content/fonts";
-import { creators as rawCreators } from "../content/creators";
+import { FontSchema, CreatorSchema, type Font, type Creator } from "./schema.js";
+import { fonts as rawFonts } from "../content/fonts/index.js";
+import { creators as rawCreators } from "../content/creators/index.js";
 
 let validatedFonts: Font[] | null = null;
 let validatedCreators: Creator[] | null = null;
 
 function validateFonts(): Font[] {
   if (validatedFonts) return validatedFonts;
-  validatedFonts = rawFonts.map((f, i) => {
+  validatedFonts = rawFonts.map((f: unknown, i: number) => {
     const result = FontSchema.safeParse(f);
     if (!result.success) {
       const label = (f as Record<string, unknown>)["id"] ?? `index ${i}`;
@@ -22,7 +22,7 @@ function validateFonts(): Font[] {
 
 function validateCreators(): Creator[] {
   if (validatedCreators) return validatedCreators;
-  validatedCreators = rawCreators.map((c, i) => {
+  validatedCreators = rawCreators.map((c: unknown, i: number) => {
     const result = CreatorSchema.safeParse(c);
     if (!result.success) {
       const label = (c as Record<string, unknown>)["id"] ?? `index ${i}`;
@@ -36,7 +36,7 @@ function validateCreators(): Creator[] {
 }
 
 export function getFonts(): Font[] {
-  return validateFonts();
+  return validateFonts()!;
 }
 
 export function getFont(id: string): Font | undefined {
@@ -44,7 +44,7 @@ export function getFont(id: string): Font | undefined {
 }
 
 export function getCreators(): Creator[] {
-  return validateCreators();
+  return validateCreators()!;
 }
 
 export function getCreator(id: string): Creator | undefined {

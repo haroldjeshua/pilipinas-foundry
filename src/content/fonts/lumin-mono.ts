@@ -1,4 +1,4 @@
-import type { Font } from "../../lib/schema";
+import type { Font } from "../../lib/schema.js";
 
 const font: Font = {
   id: "lumin-mono",

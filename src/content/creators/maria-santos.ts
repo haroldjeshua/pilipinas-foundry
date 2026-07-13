@@ -1,4 +1,4 @@
-import type { Creator } from "../../lib/schema";
+import type { Creator } from "../../lib/schema.js";
 
 const creator: Creator = {
   id: "maria-santos",

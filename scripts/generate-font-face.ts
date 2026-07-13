@@ -10,7 +10,7 @@
 
 import { writeFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { getFonts } from "../src/lib/content";
+import { getFonts } from "../src/lib/content.js";
 
 const OUT_PATH = resolve(import.meta.dirname, "..", "src", "styles", "font-faces.css");
 

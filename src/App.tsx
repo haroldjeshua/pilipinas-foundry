@@ -13,7 +13,7 @@ export default function App() {
                 <h1 className="text-2xl font-semibold tracking-tight text-foreground">
                   tipong-pinoy
                 </h1>
-                <p className="mt-2 text-sm text-muted">
+                <p className="mt-2 text-sm text-muted-foreground">
                   A Filipino free font library
                 </p>
               </section>

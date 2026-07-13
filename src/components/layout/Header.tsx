@@ -6,12 +6,12 @@ export default function Header() {
       <div className="mx-auto flex max-w-screen-xl items-center justify-between px-6 py-4">
         <Link
           to="/"
-          className="font-sans text-lg font-semibold tracking-tight text-foreground hover:text-accent transition-colors duration-fast"
+          className="font-sans text-lg font-semibold tracking-tight text-foreground hover:text-primary transition-colors duration-fast"
         >
           tipong-pinoy
         </Link>
         <nav aria-label="Main">
-          <ul className="flex items-center gap-6 text-sm text-muted">
+          <ul className="flex items-center gap-6 text-sm text-muted-foreground">
             <li>
               <Link
                 to="/"

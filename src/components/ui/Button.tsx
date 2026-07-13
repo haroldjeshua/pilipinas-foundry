@@ -1,7 +1,7 @@
 import { type ButtonHTMLAttributes, forwardRef } from "react";
-import { cn } from "../../lib/cn";
+import { cn } from "@/lib/utils";
 
-type ButtonVariant = "default" | "outline" | "ghost";
+type ButtonVariant = "default" | "outline" | "ghost" | "destructive";
 type ButtonSize = "sm" | "md" | "lg";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -11,11 +11,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   default:
-    "bg-foreground text-background hover:bg-foreground/90",
+    "bg-primary text-primary-foreground hover:bg-primary/90",
   outline:
-    "border border-border bg-transparent text-foreground hover:bg-surface",
+    "border border-border bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground",
   ghost:
-    "bg-transparent text-muted hover:text-foreground hover:bg-surface",
+    "bg-transparent text-muted-foreground hover:text-foreground hover:bg-accent hover:text-accent-foreground",
+  destructive:
+    "bg-destructive text-white hover:bg-destructive/90",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -31,7 +33,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         className={cn(
           "inline-flex items-center justify-center gap-2 rounded-md font-sans font-medium transition-colors duration-fast",
-          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
+          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
           "disabled:pointer-events-none disabled:opacity-50",
           variantStyles[variant],
           sizeStyles[size],

@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer className="border-t border-border">
-      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-6 py-4 text-xs text-muted">
+      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-6 py-4 text-xs text-muted-foreground">
         <span>tipong-pinoy</span>
         <span>
           Filipino free font library

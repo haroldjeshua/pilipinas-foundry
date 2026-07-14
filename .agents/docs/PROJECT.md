@@ -63,7 +63,7 @@ creator attribution as a first-class feature are the differentiators.
 ## 3. Tech Stack
 
 - Vite + React + TypeScript (strict) + Tailwind
-- No backend, no database — static site, deployable to Cloudflare Pages
+- No backend, no database — static site, deployable to Vercel
 - Font data as static JSON (or TS modules) — content-as-code, no CMS for v1
 - Fonts self-hosted as `.woff2` in `/public/fonts`, subsetted before commit
 - UI typeface: Geist Sans (interface chrome), Geist Mono (numbers/metadata)
@@ -207,8 +207,8 @@ The full execution plan lives in `.agents/docs/PHASES.md`. Summary:
   collection grid of Filipino fonts (Open Foundry style) with browse/filter.
   Font specimen pages at `/fonts/{font-name}` with interactive dual-pane preview
   (Tomoya Okada style) plus specimen details (weights, license, creator credit).
-  About page. Tagalog pangram default, Geist Sans/Mono UI, deployed to Cloudflare
-  Pages. Manual PR-based ingestion. Creator attribution inline on specimen pages
+  About page. Tagalog pangram default, Geist Sans/Mono UI, deployed to Vercel.
+  Manual PR-based ingestion. Creator attribution inline on specimen pages
   (no separate creator profile pages in v1). `tipong-pinoy` may appear as a
   local label on the about page.
 - **V2 (future):** Creator profile pages, full-text search, better specimen

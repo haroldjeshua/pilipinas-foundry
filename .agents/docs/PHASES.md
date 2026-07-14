@@ -418,7 +418,7 @@ happens outside the agent's scope.
 - License/attribution audit: every live font has correct, visible license
   info and correct creator credit — this is a hard requirement, not a nice-
   to-have (PROJECT.md §2).
-- Deploy configuration for Cloudflare Pages — confirm build settings, output
+- Deploy configuration for Vercel — confirm build settings, output
   directory, and any header/redirect rules needed.
 - Final `README.md`: real project description, setup instructions, and a
   short note on the ingestion workflow for future contributions (linking to

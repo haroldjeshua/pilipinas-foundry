@@ -36,7 +36,7 @@ pnpm dev
 - **Styling:** Tailwind CSS v4 (CSS-first config)
 - **Components:** shadcn/ui (Base UI primitives, Luma style)
 - **Validation:** Zod (runtime content schema checks)
-- **Deployment:** Cloudflare Pages
+- **Deployment:** Vercel
 
 ## Project Structure
 

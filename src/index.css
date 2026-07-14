@@ -1,50 +1,32 @@
 @import "tailwindcss";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
+@import "./typeset.css";
 @import "./styles/font-faces.css";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
-/* ─── UI Typefaces (Geist via woff2) ─── */
+/* ─── shadcn typeset preset ─── */
 
-@font-face {
-  font-family: "Geist Sans";
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-  src: url("/fonts/dfa48d.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Geist Sans";
-  font-weight: 100 900;
-  font-style: italic;
-  font-display: swap;
-  src: url("/fonts/dfa48d.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Geist Mono";
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-  src: url("/fonts/308360.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Geist Mono";
-  font-weight: 100 900;
-  font-style: italic;
-  font-display: swap;
-  src: url("/fonts/308360.woff2") format("woff2");
+.typeset-docs {
+  --typeset-font-body: var(--font-geist);
+  --typeset-font-heading: var(--font-geist);
+  --typeset-font-mono: var(--font-geist-mono);
+  --typeset-size: 15px;
+  --typeset-leading: 1.75;
+  --typeset-flow: 1.25em;
 }
 
 /* ─── shadcn theme mapping + our custom tokens ─── */
 
 @theme inline {
   --font-heading: var(--font-sans);
-  --font-sans: "Geist Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
+  --font-geist: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-geist-mono: "Geist Mono Variable", ui-monospace, monospace;
 
   /* shadcn color → Tailwind utility mapping */
   --color-background: var(--background);
@@ -213,4 +195,30 @@
 
 ::selection {
   background-color: oklch(0.50 0.14 260 / 0.15);
+}
+
+::-webkit-scrollbar {
+		width: 5px;
+	}
+	::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	::-webkit-scrollbar-thumb {
+		background: var(--border);
+		border-radius: 5px;
+	}
+	* {
+		scrollbar-width: thin;
+		scrollbar-color: var(--border) transparent;
+	}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

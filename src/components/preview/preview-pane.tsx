@@ -17,6 +17,7 @@ interface PaneState {
 interface PreviewPaneProps {
   label: string;
   previewText: string;
+  initialFontId?: string;
   initialState?: Partial<PaneState>;
 }
 
@@ -34,10 +35,12 @@ const defaultState: PaneState = {
 export default function PreviewPane({
   label,
   previewText,
+  initialFontId,
   initialState,
 }: PreviewPaneProps) {
   const [state, setState] = useState<PaneState>({
     ...defaultState,
+    ...(initialFontId ? { fontId: initialFontId } : {}),
     ...initialState,
   });
 
@@ -95,6 +98,8 @@ export default function PreviewPane({
               variant={state.weight === w ? "default" : "outline"}
               size="sm"
               onClick={() => update("weight", w)}
+              aria-label={`Weight ${w}`}
+              aria-pressed={state.weight === w}
               className="font-mono text-xs tabular-nums"
             >
               {w}

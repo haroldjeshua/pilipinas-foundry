@@ -1,25 +1,44 @@
-import { useState } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { useParams, Link } from "react-router";
 import { getFont, getCreator } from "@/lib/content";
 import { useFontFaceAll } from "@/hooks/use-font-face";
-import { TAGALOG_PANGRAM, ENGLISH_PANGRAM } from "@/lib/pangrams";
-import PreviewPane from "./preview-pane";
-import SettingsDialog from "./settings-dialog";
+import { TAGALOG_PANGRAMS } from "@/components/home/font-pangrams";
+import SpecimenToolbar from "./specimen-toolbar";
+import type { SpecimenState } from "./specimen-toolbar";
+
+function randomFrom(arr: string[]): string {
+  return arr[Math.floor(Math.random() * arr.length)]!;
+}
+
+const INITIAL_TEXT = randomFrom(TAGALOG_PANGRAMS);
 
 export default function PreviewPage() {
   const { id } = useParams<{ id: string }>();
   const font = getFont(id ?? "");
   const creator = font ? getCreator(font.creatorId) : undefined;
 
-  const [pangramLang, setPangramLang] = useState<"tagalog" | "english">(
-    "tagalog",
-  );
-
-  const previewText =
-    pangramLang === "tagalog" ? TAGALOG_PANGRAM : ENGLISH_PANGRAM;
-
-  // Load all declared weights for the specimen
   useFontFaceAll(font);
+
+  const [previewText, setPreviewText] = useState(INITIAL_TEXT);
+
+  const [specimen, setSpecimen] = useState<SpecimenState>({
+    weight: 400,
+    italic: false,
+    size: 64,
+    tracking: 0,
+    leading: 1.3,
+    bgColor: "#ffffff",
+    fgColor: "#0a0a0a",
+  });
+
+  const handleStateChange = useCallback((next: SpecimenState) => {
+    setSpecimen(next);
+  }, []);
+
+  const weightOptions = useMemo(() => {
+    if (!font) return [];
+    return font.weights;
+  }, [font]);
 
   if (!font) {
     return (
@@ -28,8 +47,8 @@ export default function PreviewPage() {
           Font not found
         </h1>
         <p className="text-sm text-muted-foreground">
-          No font matches "{id}". It may have been removed or the link may be
-          incorrect.
+          No font matches &ldquo;{id}&rdquo;. It may have been removed or the
+          link may be incorrect.
         </p>
         <Link
           to="/"
@@ -43,15 +62,9 @@ export default function PreviewPage() {
 
   return (
     <div className="flex flex-col gap-16">
-      {/* Header */}
-      <div className="flex items-start justify-between">
+      {/* Header — two columns: text left, trigger right */}
+      <div className="relative flex items-start justify-between">
         <div className="flex flex-col gap-1">
-          <Link
-            to="/"
-            className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-          >
-            pilipinas-foundry
-          </Link>
           <h1 className="text-3xl font-semibold tracking-tight text-foreground">
             {font.name}
           </h1>
@@ -62,38 +75,39 @@ export default function PreviewPage() {
             </p>
           )}
         </div>
-        <SettingsDialog
-          pangramLang={pangramLang}
-          onPangramChange={setPangramLang}
+        <SpecimenToolbar
+          weights={weightOptions}
+          onStateChange={handleStateChange}
+          onPreviewTextChange={setPreviewText}
         />
       </div>
 
-      {/* Specimen — font rendered at each declared weight */}
+      {/* Specimen — editable textarea */}
       <section className="flex flex-col gap-6">
-        <h2 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-          Specimen
-        </h2>
-        <div className="flex flex-col gap-6">
-          {font.weights.map((weight) => (
-            <div key={weight} className="flex flex-col gap-1">
-              <span className="font-mono text-xs tabular-nums text-muted-foreground">
-                {weight}
-              </span>
-              <p
-                className="text-2xl leading-relaxed text-foreground"
-                style={{
-                  fontFamily: `"${font.name}", sans-serif`,
-                  fontWeight: weight,
-                }}
-              >
-                {previewText}
-              </p>
-            </div>
-          ))}
+        <div
+          className="rounded-xl p-6 transition-colors"
+          style={{ backgroundColor: specimen.bgColor }}
+        >
+          <textarea
+            value={previewText}
+            onChange={(e) => setPreviewText(e.target.value)}
+            rows={6}
+            className="w-full resize-none rounded-lg border-0 bg-transparent p-0 text-inherit outline-none placeholder:opacity-30 focus:ring-0"
+            style={{
+              fontFamily: `"${font.name}", sans-serif`,
+              fontWeight: specimen.weight,
+              fontStyle: specimen.italic ? "italic" : "normal",
+              fontSize: `${specimen.size}px`,
+              color: specimen.fgColor,
+              letterSpacing: `${specimen.tracking}em`,
+              lineHeight: specimen.leading,
+            }}
+            placeholder="Type something..."
+          />
         </div>
       </section>
 
-      {/* Description */}
+      {/* About */}
       {font.description && (
         <section className="flex flex-col gap-3">
           <h2 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
@@ -105,7 +119,7 @@ export default function PreviewPage() {
         </section>
       )}
 
-      {/* Metadata */}
+      {/* Details */}
       <section className="flex flex-col gap-3">
         <h2 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
           Details
@@ -162,27 +176,7 @@ export default function PreviewPage() {
         </dl>
       </section>
 
-      {/* Interactive preview */}
-      <section className="flex flex-col gap-6">
-        <h2 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-          Preview
-        </h2>
-        <div className="grid gap-8 lg:grid-cols-2">
-          <PreviewPane
-            label="Heading"
-            previewText={previewText}
-            initialFontId={font.id}
-          />
-          <PreviewPane
-            label="Body"
-            previewText={previewText}
-            initialFontId={font.id}
-            initialState={{ size: 18, weight: 400 }}
-          />
-        </div>
-      </section>
-
-      {/* Creator link */}
+      {/* Designer */}
       {creator && (
         <section className="flex flex-col gap-3 border-t border-border pt-8">
           <h2 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">

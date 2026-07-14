@@ -14,6 +14,7 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
 } from "@/components/ui/dropdown-menu";
+import { Logo } from "../logo";
 
 const STORAGE_KEY = "pilipinas-foundry:primary";
 
@@ -52,17 +53,18 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-40 backdrop-blur-md supports-backdrop-filter:bg-background/60">
-      <div className="mx-auto flex max-w-7xl items-center justify-between h-14 px-6">
+      <div className="mx-auto grid max-w-7xl grid-cols-3 items-center h-14 px-6">
         {/* Logo */}
         <Link
           to="/"
-          className="font-sans text-base font-semibold tracking-tight text-foreground hover:text-primary transition-colors duration-fast"
-        >
-          pilipinas-foundry
+          className="flex flex-row items-center justify-left gap-2 font-sans text-base font-semibold tracking-tight text-foreground hover:text-primary transition-colors duration-fast"
+				>
+					<Logo className="size-8" />
+          <span className="hidden sm:inline">pilipinas-foundry</span>
         </Link>
 
         {/* Centered nav — tab-styled route links */}
-        <nav aria-label="Main" className="flex-1 flex justify-center">
+        <nav aria-label="Main" className="flex justify-center">
           <div className="flex items-center rounded-full bg-muted p-1">
             {routes.map((route) => {
               const isActive =
@@ -87,7 +89,7 @@ export default function Header() {
         </nav>
 
         {/* Right actions */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center justify-end gap-1">
           <DropdownMenu>
             <DropdownMenuTrigger render={<Button variant="ghost" size="icon-sm" nativeButton={false} />}>
               <HugeiconsIcon icon={Setting06Icon} size={16} strokeWidth={1.5} />
@@ -139,10 +141,6 @@ export default function Header() {
               </DropdownMenuGroup>
             </DropdownMenuContent>
           </DropdownMenu>
-
-          <Button variant="ghost" size="icon-sm" disabled aria-label="More">
-            <span className="text-sm">⋯</span>
-          </Button>
         </div>
       </div>
     </header>

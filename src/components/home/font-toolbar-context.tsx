@@ -1,5 +1,6 @@
-import { createContext, useCallback, useContext, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import type { ReactNode } from "react";
+import { useLocation } from "react-router";
 
 interface CardState {
   weight: number;
@@ -42,6 +43,12 @@ const cardDefaults: CardState = {
 export function FontToolbarProvider({ children }: { children: ReactNode }) {
   const [activeFontId, setActiveFontId] = useState<string | null>(null);
   const [cards, setCards] = useState<Map<string, CardState>>(new Map());
+  const location = useLocation();
+
+  // Dismiss toolbar on route change
+  useEffect(() => {
+    setActiveFontId(null);
+  }, [location.pathname]);
 
   const activate = useCallback((fontId: string, weights: number[]) => {
     setActiveFontId(fontId);

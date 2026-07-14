@@ -4,6 +4,7 @@ import { GridViewIcon, ListViewIcon } from "@hugeicons/core-free-icons";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getFonts } from "@/lib/content";
 import FontGridItem from "./font-grid-item";
+import { Logo } from "../logo";
 
 const allFonts = getFonts();
 
@@ -41,7 +42,8 @@ export default function HomePage() {
   return (
     <>
       {/* ─── Hero ─── */}
-      <section className="flex min-h-[60svh] flex-col items-center justify-center text-center">
+			<section className="flex min-h-[60svh] flex-col items-center justify-center text-center">
+				<Logo className="mb-4" />
         <h1 className="text-balance text-5xl font-bold tracking-tighter text-foreground sm:text-7xl">
           pilipinas-foundry
         </h1>
